@@ -28,12 +28,13 @@ public class QLearningAlgorithm implements DomainGenerator {
     public static final String ACTION_WEST  = "west";
 
     protected int goalx = 2;
-    protected int goaly = 4;
+    protected int goaly = 5;
+    public static boolean isQLearning = false;
     
     public static int [][] map = new int[][]{
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0},
-                    {0, 1, 1, 1, 0},
+                    {0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0},
+                    {0, 1, 1, 1, 1, 0},
     };
     
     SimulatedEnvironment env;
@@ -60,6 +61,7 @@ public class QLearningAlgorithm implements DomainGenerator {
     }
     
     public static void main(String [] args){
+        isQLearning = true;
         QLearningAlgorithm gen = new QLearningAlgorithm();
         SADomain domain = (SADomain) gen.generateDomain();
 

@@ -28,12 +28,12 @@ public class SarsaAlgorithm implements DomainGenerator {
     public static final String ACTION_WEST  = "west";
 
     protected int goalx = 2;
-    protected int goaly = 4;
+    protected int goaly = 5;
     
     public static int [][] map = new int[][]{
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0},
-                    {0, 1, 1, 1, 0},
+                    {0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0},
+                    {0, 1, 1, 1, 1, 0},
     };
     
     SimulatedEnvironment env;
@@ -72,7 +72,7 @@ public class SarsaAlgorithm implements DomainGenerator {
         agent.setLearningPolicy(epsilon);
         
         int episodes = 0;
-        while(episodes <= 500){
+        while(episodes <= 700){
             Episode e = agent.runLearningEpisode(env, -1);
             System.out.println("Episodio "+ episodes + ": " + e.actionString());
             epsilon.setEpsilon(epsilon.getEpsilon() * 0.995);

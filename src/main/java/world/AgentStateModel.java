@@ -12,53 +12,11 @@ import java.util.List;
  */
 public class AgentStateModel implements FullStateModel {
 
-//    protected double [][] transitionProbs;
-    
-    public AgentStateModel() {
-//        this.transitionProbs = new double[4][4];
-//        for(int i = 0; i < 4; i++){
-//            for(int j = 0; j < 4; j++){
-//                //FORMULA
-//                double p = 0.25;
-//                transitionProbs[i][j] = p;
-//            }
-//        }
-    }
+    public AgentStateModel() {}
     
     @Override
     public List<StateTransitionProb> stateTransitions(State s, Action a) {
-//        AgentState gs = (AgentState) s;
-//
-//        int curX = gs.x;
-//        int curY = gs.y;
-//        
-//        int adir = actionDir(a);
-//        
         List<StateTransitionProb> tps = new ArrayList<StateTransitionProb>();
-//        StateTransitionProb noChange = null;
-//        
-//        for(int i = 0; i < 4; i++){
-//
-//            int [] newPos = this.moveResult(curX, curY, i);
-//            if(newPos[0] != curX || newPos[1] != curY){
-//                //new possible outcome
-//                AgentState ns = gs.copy();
-//                ns.x = newPos[0];
-//                ns.y = newPos[1];
-//
-//                tps.add(new StateTransitionProb(ns, this.transitionProbs[adir][i]));
-//            }
-//            else{
-//                if(noChange != null){
-//                    noChange.p += this.transitionProbs[adir][i];
-//                }
-//                else{
-//                    noChange = new StateTransitionProb(s.copy(), this.transitionProbs[adir][i]);
-//                    tps.add(noChange);
-//                }
-//            }
-//        }
-//
         return tps;
     }
 
@@ -89,17 +47,6 @@ public class AgentStateModel implements FullStateModel {
         int curY = state.y;
 
         int dir = actionDir(a);
-
-//        double r = Math.random();
-//        double sumProb = 0;
-//        int dir = 0;
-//        for(int i = 0; i < 4; i++){
-//            sumProb += this.transitionProbs[adir][i];
-//            if(r < sumProb){
-//                    dir = i;
-//                    break; 
-//            }
-//        }
 
         int [] newPos = this.moveResult(curX, curY, dir);
 
@@ -132,8 +79,15 @@ public class AgentStateModel implements FullStateModel {
         int nx = curX + xdelta;
         int ny = curY + ydelta;
 
-        int height = QLearningAlgorithm.map.length;
-        int width  = QLearningAlgorithm.map[0].length;
+        int height, width;
+        if(QLearningAlgorithm.isQLearning) {
+            height = QLearningAlgorithm.map.length;
+            width  = QLearningAlgorithm.map[0].length;
+        } else {
+            height = SarsaAlgorithm.map.length;
+            width  = SarsaAlgorithm.map[0].length;
+            
+        }
 
         if(nx < 0 || nx >= height || ny < 0 || ny >= width){ 
             nx = curX;

@@ -16,6 +16,9 @@ public class AgentState implements MutableState {
 
     private final static List<Object> keys = Arrays.<Object>asList(
             QLearningAlgorithm.VAR_X, QLearningAlgorithm.VAR_Y);
+    
+    private final static List<Object> keysSarsa = Arrays.<Object>asList(
+            SarsaAlgorithm.VAR_X, SarsaAlgorithm.VAR_Y);
 
     public AgentState() {
     }
@@ -27,14 +30,27 @@ public class AgentState implements MutableState {
     
     @Override
     public MutableState set(Object variableKey, Object value) {
-        if(variableKey.equals(QLearningAlgorithm.VAR_X)){
-            this.x = StateUtilities.stringOrNumber(value).intValue();
-        }
-        else if(variableKey.equals(QLearningAlgorithm.VAR_Y)){
-            this.y = StateUtilities.stringOrNumber(value).intValue();
-        }
-        else{
-            throw new UnknownKeyException(variableKey);
+        if(QLearningAlgorithm.isQLearning) {
+            if(variableKey.equals(QLearningAlgorithm.VAR_X)){
+                this.x = StateUtilities.stringOrNumber(value).intValue();
+            }
+            else if(variableKey.equals(QLearningAlgorithm.VAR_Y)){
+                this.y = StateUtilities.stringOrNumber(value).intValue();
+            }
+            else{
+                throw new UnknownKeyException(variableKey);
+            }
+        } else {
+            if(variableKey.equals(SarsaAlgorithm.VAR_X)){
+                this.x = StateUtilities.stringOrNumber(value).intValue();
+            }
+            else if(variableKey.equals(SarsaAlgorithm.VAR_Y)){
+                this.y = StateUtilities.stringOrNumber(value).intValue();
+            }
+            else{
+                throw new UnknownKeyException(variableKey);
+            }
+            
         }
         return this;
     }
@@ -46,11 +62,20 @@ public class AgentState implements MutableState {
 
     @Override
     public Object get(Object variableKey) {
-        if(variableKey.equals(QLearningAlgorithm.VAR_X)){
-            return x;
-        }
-        else if(variableKey.equals(QLearningAlgorithm.VAR_Y)){
-            return y;
+        if(QLearningAlgorithm.isQLearning) {
+            if(variableKey.equals(QLearningAlgorithm.VAR_X)){
+                return x;
+            }
+            else if(variableKey.equals(QLearningAlgorithm.VAR_Y)){
+                return y;
+            }
+        } else {
+            if(variableKey.equals(SarsaAlgorithm.VAR_X)){
+                return x;
+            }
+            else if(variableKey.equals(SarsaAlgorithm.VAR_Y)){
+                return y;
+            }    
         }
         throw new UnknownKeyException(variableKey);
     }
