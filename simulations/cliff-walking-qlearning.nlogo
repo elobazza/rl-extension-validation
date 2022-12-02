@@ -32,7 +32,7 @@ to setup
     learningextension:action-selection "e-greedy" [0.7 0.995]
     learningextension:learning-rate 1
     learningextension:discount-factor 1
-    learningextension:define-algorithm 1
+    learningextension:define-algorithm "qlearning"
 
     learningextension:setup
 

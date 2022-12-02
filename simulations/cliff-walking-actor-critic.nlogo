@@ -33,7 +33,7 @@ to setup
     learningextension:learning-rate 0.5
     learningextension:discount-factor 1
     learningextension:lambda 0.3
-    learningextension:define-algorithm 3
+    learningextension:define-algorithm "actor-critic"
 
     learningextension:setup
 

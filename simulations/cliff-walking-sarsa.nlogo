@@ -33,7 +33,7 @@ to setup
     learningextension:learning-rate 0.5
     learningextension:discount-factor 0.5
     learningextension:lambda 1
-    learningextension:define-algorithm 2
+    learningextension:define-algorithm "sarsa-lambda"
 
     learningextension:setup
 
